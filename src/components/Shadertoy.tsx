@@ -172,7 +172,7 @@ function Shadertoy({ shaderSource }: { shaderSource: string }) {
       requestAnimationFrame(render)
     }
     requestAnimationFrame(render)
-  }, [])
+  })
 
   return <canvas ref={canvasRef} className="h-full aspect-square" />
 }

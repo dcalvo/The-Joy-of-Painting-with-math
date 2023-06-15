@@ -41,7 +41,7 @@ function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
       }[e.key]
       handleKeyDown?.()
     }
-  }, [])
+  })
 
   return (
     <div className="w-screen h-screen py-4 px-6 flex flex-col">
