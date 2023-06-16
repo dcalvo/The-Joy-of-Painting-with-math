@@ -1,28 +1,37 @@
 import React, { useState } from "react"
 
-function MultilineInput({ defaultValue = "", className }: { defaultValue?: string; className?: string }) {
-  const [value, setValue] = useState(defaultValue.trim())
+type MultilineInputProps = {
+  value: string
+  onEdit: (newValue: string) => void
+}
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value)
-  }
-
+function MultilineInput({ value, onEdit: handleEdit }: MultilineInputProps) {
   return (
     <textarea
-      className={`${className} border rounded p-2 w-full h-full whitespace-nowrap`}
+      className="flex-1 border rounded p-2 w-full h-full whitespace-nowrap"
       value={value}
-      onChange={handleChange}
+      onChange={(e) => handleEdit(e.target.value)}
     />
   )
 }
 
-function Editor({ source }: { source: string }) {
+type EditorProps = {
+  defaultSource: string
+  onCompile: (source: string) => void
+}
+
+function Editor({ defaultSource, onCompile: handleCompile }: EditorProps) {
+  const [input, setInput] = useState(defaultSource.trim())
+
   return (
     <div className="h-full flex flex-col justify-end">
       <div id="text-editor" className="flex-1 flex flex-col">
-        <MultilineInput defaultValue={source} className="flex-1" />
+        <MultilineInput value={input} onEdit={setInput} />
         <div id="toolbar" className="flex justify-end">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-xl py-0 px-1">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-xl py-0 px-1"
+            onClick={() => handleCompile(input)}
+          >
             Run
           </button>
         </div>

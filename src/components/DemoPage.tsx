@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Shadertoy from "./Shadertoy"
 import Editor from "./Editor"
 
@@ -32,6 +32,7 @@ type DemoPageProps = {
 
 function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
   const router = useRouter()
+  const [source, setSource] = useState(shaderSource)
 
   useEffect(() => {
     document.onkeydown = (e) => {
@@ -53,9 +54,9 @@ function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
         <NavButton text={"Next"} href={nextHref} className="ml-auto" />
       </div>
       <div id="content" className="flex-1 grid grid-cols-2 gap-x-8 py-4 px-6">
-        <Editor source={shaderSource} />
+        <Editor defaultSource={shaderSource} onCompile={setSource} />
         <div className="flex flex-col items-center">
-          <Shadertoy shaderSource={shaderSource} />
+          <Shadertoy shaderSource={source} />
         </div>
       </div>
     </div>
