@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import Shadertoy from "./Shadertoy"
+import Editor from "./Editor"
 
 function NavButton({ text, href, className }: { text: string; href: string | null; className?: string }) {
   const router = useRouter()
@@ -34,7 +35,8 @@ function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
 
   useEffect(() => {
     document.onkeydown = (e) => {
-      if (e.target instanceof HTMLInputElement) return
+      const elements_to_ignore = [HTMLInputElement, HTMLTextAreaElement]
+      if (elements_to_ignore.some((type) => e.target instanceof type)) return
       const handleKeyDown = {
         ArrowLeft: () => router.push(prevHref ?? ""),
         ArrowRight: () => router.push(nextHref ?? ""),
@@ -44,17 +46,15 @@ function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
   })
 
   return (
-    <div className="w-screen h-screen py-4 px-6 flex flex-col">
-      <div className="pb-8 flex">
+    <div className="w-screen h-screen flex flex-col">
+      <div id="titlebar" className="bg-[#404040] flex py-4 px-6">
         <NavButton text={"Back"} href={prevHref} className="mr-auto" />
-        <h2 className="text-center text-2xl font-bold">{title}</h2>
+        <h2 className="text-center text-2xl font-bold text-white">{title}</h2>
         <NavButton text={"Next"} href={nextHref} className="ml-auto" />
       </div>
-      <div className="flex-1 flex">
-        <div className="flex-1">
-          <h1>hello world!</h1>
-        </div>
-        <div className="ml-auto">
+      <div id="content" className="flex-1 grid grid-cols-2 gap-x-8 py-4 px-6">
+        <Editor source={shaderSource} />
+        <div className="flex flex-col items-center">
           <Shadertoy shaderSource={shaderSource} />
         </div>
       </div>
