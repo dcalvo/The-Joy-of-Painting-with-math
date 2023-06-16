@@ -1,4 +1,4 @@
-import DemoPage from "@/components/DemoPage"
+import DemoPage from "@components/DemoPage"
 
 function Page() {
   const shaderSource = `
