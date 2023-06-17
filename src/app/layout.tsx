@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script
           type="application/javascript"
           src="http://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.js"
+          async
         />
       </head>
       <body className={`${inter.className} bg-[#272822]`}>{children}</body>

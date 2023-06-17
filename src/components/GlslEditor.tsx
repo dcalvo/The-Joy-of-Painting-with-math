@@ -148,7 +148,7 @@ function GlslEditor({ defaultSource, fontSize = 14 }: GlslEditorProps) {
         for (const child of Array.from(editor.children)) editor.removeChild(child)
       }
     }
-  }, [])
+  })
 
   return <div id="glsl_editor" style={{ fontSize: `${fontSize}px` }} />
 }
