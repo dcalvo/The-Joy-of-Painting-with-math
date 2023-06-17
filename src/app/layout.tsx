@@ -16,11 +16,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link
           type="text/css"
           rel="stylesheet"
-          href="http://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.css"
+          href="https://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.css"
         />
         <script
           type="application/javascript"
-          src="http://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.js"
+          src="https://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.js"
         />
       </head>
       <body className={`${inter.className} bg-[#272822]`}>{children}</body>
