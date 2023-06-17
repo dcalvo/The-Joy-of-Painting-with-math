@@ -2,8 +2,6 @@
 
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import Shadertoy from "./Shadertoy"
-import Editor from "./Editor"
 import GlslEditor from "./GlslEditor"
 
 function NavButton({ text, href, className }: { text: string; href: string | null; className?: string }) {
@@ -24,6 +22,36 @@ function NavButton({ text, href, className }: { text: string; href: string | nul
   )
 }
 
+interface FontSizeInputProps {
+  value: number
+  onChange: (value: number) => void
+}
+
+function FontSizeInput({ value, onChange }: FontSizeInputProps) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = parseInt(event.target.value)
+    if (isNaN(newValue)) onChange(0)
+    if (newValue >= 1 && newValue <= 98) onChange(newValue)
+  }
+
+  return (
+    <div className="mx-auto">
+      <label className="block text-center text-lg text-white">
+        Font Size
+        <input
+          type="number"
+          value={value.toString()}
+          onChange={handleChange}
+          maxLength={2}
+          min={1}
+          max={98}
+          className="w-8 h-8 p-1 ml-2 border border-gray-300 text-black rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        />
+      </label>
+    </div>
+  )
+}
+
 type DemoPageProps = {
   title: string
   prevHref: string | null
@@ -33,7 +61,7 @@ type DemoPageProps = {
 
 function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
   const router = useRouter()
-  const [source, setSource] = useState(shaderSource)
+  const [fontSize, setFontSize] = useState<number>(14)
 
   // Navigate pages
   useEffect(() => {
@@ -51,17 +79,14 @@ function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
   return (
     <div className="w-screen h-screen flex flex-col">
       <div id="titlebar" className="bg-[#2f302a] flex py-4 px-6 z-[300]">
-        <NavButton text={"Back"} href={prevHref} className="mr-auto" />
+        <div className="mr-auto flex space-x-4">
+          <NavButton text={"Back"} href={prevHref} className="mr-auto" />
+          <FontSizeInput value={fontSize} onChange={setFontSize} />
+        </div>
         <h2 className="text-center text-2xl font-bold text-white">{title}</h2>
         <NavButton text={"Next"} href={nextHref} className="ml-auto" />
       </div>
-      <GlslEditor defaultSource={shaderSource} />
-      {/* <div id="content" className="flex-1 grid grid-cols-2 gap-x-8 py-4 px-6">
-        <Editor defaultSource={shaderSource} onCompile={setSource} />
-        <div className="flex flex-col items-center">
-          <Shadertoy shaderSource={source} />
-        </div>
-      </div> */}
+      <GlslEditor defaultSource={shaderSource} fontSize={fontSize} />
     </div>
   )
 }

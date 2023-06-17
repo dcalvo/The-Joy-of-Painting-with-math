@@ -96,17 +96,23 @@ function render() {
 }
 `
 
-function GlslEditor({ defaultSource }: { defaultSource: string }) {
+type GlslEditorProps = {
+  defaultSource: string
+  fontSize?: number
+}
+
+function GlslEditor({ defaultSource, fontSize = 14 }: GlslEditorProps) {
   // Instantiate glslEditor
   useEffect(() => {
     const script = document.createElement("script")
 
-    console.log("rendering")
+    const canvasSize = 500
 
     script.textContent = `
       var glslEditor = new GlslEditor('#glsl_editor', {
-        canvas_size: 500,
+        canvas_size: ${canvasSize},
         canvas_draggable: true,
+        canvas_resizable: true,
         theme: 'monokai',
         autofocus: false,
         indentUnit: 2,
@@ -129,18 +135,22 @@ function GlslEditor({ defaultSource }: { defaultSource: string }) {
     // move container to the bottom right
     const canvasContainer = document.querySelector<HTMLDivElement>("#glsl_editor .ge_canvas_container")
     if (canvasContainer) {
-      const height = canvasContainer.clientHeight
-      const width = canvasContainer.clientWidth
-      canvasContainer.style.top = `calc(96% - ${height}px)`
-      canvasContainer.style.left = `calc(98% - ${width}px)`
+      canvasContainer.style.height = `${canvasSize}px`
+      canvasContainer.style.width = `${canvasSize}px`
+      canvasContainer.style.top = `calc(96% - ${canvasSize}px)`
+      canvasContainer.style.left = `calc(98% - ${canvasSize}px)`
     }
 
     return () => {
       document.body.removeChild(script)
+      const editor = document.querySelector<HTMLDivElement>("#glsl_editor")
+      if (editor) {
+        for (const child of Array.from(editor.children)) editor.removeChild(child)
+      }
     }
   }, [])
 
-  return <div id="glsl_editor" />
+  return <div id="glsl_editor" style={{ fontSize: `${fontSize}px` }} />
 }
 
 export default GlslEditor
