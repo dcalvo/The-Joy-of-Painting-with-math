@@ -1,7 +1,6 @@
 import { ReactNode } from "react"
 import "./globals.css"
 import { Inter } from "next/font/google"
-import bg from "@public/background.jpg"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -13,9 +12,18 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ backgroundImage: `url(${bg.src})` }}>
-        {children}
-      </body>
+      <head>
+        <link
+          type="text/css"
+          rel="stylesheet"
+          href="http://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.css"
+        />
+        <script
+          type="application/javascript"
+          src="http://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.js"
+        />
+      </head>
+      <body className={`${inter.className} bg-[#272822]`}>{children}</body>
     </html>
   )
 }
