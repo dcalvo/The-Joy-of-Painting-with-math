@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import GlslEditor from "./GlslEditor"
 
 function NavButton({ text, href, className }: { text: string; href: string | null; className?: string }) {
@@ -64,6 +64,16 @@ function DemoPage({ title, prevHref, nextHref, shaderSource, children }: DemoPag
   const router = useRouter()
   const [fontSize, setFontSize] = useState<number>(14)
 
+  useEffect(() => {
+    const storedFontSize = parseInt(localStorage.getItem("fontSize") ?? "14")
+    setFontSize(storedFontSize)
+  }, [])
+
+  const updateFontSize = (newFontSize: number) => {
+    setFontSize(newFontSize)
+    localStorage.setItem("fontSize", newFontSize.toString())
+  }
+
   // Navigate pages
   useEffect(() => {
     document.onkeydown = (e) => {
@@ -82,7 +92,7 @@ function DemoPage({ title, prevHref, nextHref, shaderSource, children }: DemoPag
       <div id="titlebar" className="bg-[#2f302a] flex py-4 px-6 z-[300]">
         <div className="mr-auto flex space-x-4">
           <NavButton text={"Back"} href={prevHref} className="mr-auto" />
-          <FontSizeInput value={fontSize} onChange={setFontSize} />
+          <FontSizeInput value={fontSize} onChange={updateFontSize} />
         </div>
         {children ? children : <h2 className="text-center text-2xl font-bold text-white">{title}</h2>}
         <NavButton text={"Next"} href={nextHref} className="ml-auto" />
