@@ -1,0 +1,9 @@
+version: '3'
+services:
+  shadertoy-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shadertoy-demo:latest
+    ports:
+      - "8000:8000"
