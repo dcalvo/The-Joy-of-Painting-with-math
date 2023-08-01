@@ -19,7 +19,7 @@ vec3 palette( float t ) {
  * - click and scroll in the font size box to change the font size
  * - ctrl + / to comment or uncomment a line
  * - refresh to reset the editor
- * Try it out! Click and change some numbers! (1.5 on line 17 is a favorite)
+ * Try it out! Click and change some numbers! (1.5 on line 27 is a favorite)
  */
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
