@@ -115,7 +115,7 @@ function GlslEditor({ defaultSource, fontSize = 14 }: GlslEditorProps) {
         canvas_resizable: true,
         theme: 'monokai',
         autofocus: false,
-        indentUnit: 2,
+        indentUnit: 4,
         frag_header: \`${sourceHeader}\`,
         frag_footer: \`${sourceFooter}\`,
         frag: \`${defaultSource}\`,

@@ -57,9 +57,10 @@ type DemoPageProps = {
   prevHref: string | null
   nextHref: string | null
   shaderSource: string
+  children? : React.ReactNode
 }
 
-function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
+function DemoPage({ title, prevHref, nextHref, shaderSource, children }: DemoPageProps) {
   const router = useRouter()
   const [fontSize, setFontSize] = useState<number>(14)
 
@@ -83,7 +84,7 @@ function DemoPage({ title, prevHref, nextHref, shaderSource }: DemoPageProps) {
           <NavButton text={"Back"} href={prevHref} className="mr-auto" />
           <FontSizeInput value={fontSize} onChange={setFontSize} />
         </div>
-        <h2 className="text-center text-2xl font-bold text-white">{title}</h2>
+        {children ? children : <h2 className="text-center text-2xl font-bold text-white">{title}</h2>}
         <NavButton text={"Next"} href={nextHref} className="ml-auto" />
       </div>
       <GlslEditor defaultSource={shaderSource} fontSize={fontSize} />
