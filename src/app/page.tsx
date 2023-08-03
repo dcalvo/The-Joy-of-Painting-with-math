@@ -1,4 +1,6 @@
 import DemoPage from "@components/DemoPage"
+import githubBadge from "@public/github-mark.svg"
+import Image from "next/image"
 
 function Page() {
   const shaderSource = `
@@ -42,7 +44,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 }
   `
 
-  return <DemoPage title={"The Joy of Painting (with math)"} prevHref={"9-exponentially_powerful"} nextHref={"1-let_there_be_dark"} shaderSource={shaderSource} />
+  return <DemoPage title={"The Joy of Painting (with math)"} prevHref={"9-exponentially_powerful"} nextHref={"1-let_there_be_dark"} shaderSource={shaderSource}>
+    <h2 className="text-center text-2xl font-bold text-white">
+      The Joy of Painting (with math)
+    </h2>
+    <a href="https://github.com/dcalvo/shadertoy-demo" target="_blank" rel="noopener noreferrer">
+      <Image src={githubBadge} alt={"Github Repo"} className="ml-2 h-8 w-8" />
+    </a>
+  </DemoPage>
 }
 
 export default Page
