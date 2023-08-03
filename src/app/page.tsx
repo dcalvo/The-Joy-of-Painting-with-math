@@ -15,8 +15,8 @@ vec3 palette( float t ) {
  * Hi! I'm a comment. Welcome to the Joy of Painting (with math)!
  * Here's a list of things you can do:
  * - click on purple numbers to bring up a slider or color picker
- * - click, drag, and resize the preview in the lower right
- * - click use the arrow keys in the font size box to change the font size
+ * - drag and resize the preview in the lower right
+ * - use the arrow keys in the font size box to change the font size
  * - ctrl + / to comment or uncomment a line
  * - refresh to reset the editor
  * Try it out! Click and change some numbers! (1.5 on line 27 is a favorite)
