@@ -23,18 +23,18 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     
     for (float i = 0.0; i < iterations; i++) {
       uv = (fract(uv * zoom) - 0.5) * 2.0;
-      // uv *= 0.5; // undo the * 2.0 because it looks better ¯\\\\_(ツ)_/¯
+      // uv *= 0.5;  // undo the * 2.0 because it looks better ¯\\\\_(ツ)_/¯
       
       float d = length(uv);
       // add a non-linear scaling factor
-      // d *= exp(-length(uv0));  // if you're curious, try graphing x * exp(-x) or visit https://www.desmos.com/calculator/1qjzqjzq8o
+      // d *= exp(-length(uv0));  // if you're curious, try graphing x * exp(-x) on Desmos
 
       float colorOffset = length(uv0) + iTime * 0.5;
       // colorOffset += i * 0.4;  // shift the color each iteration
       vec3 col = palette(colorOffset);
 
       float scale = 5.0;
-      // scale = 8.0; // it looks better!
+      // scale = 8.0;  // it looks better!
       float speed = 1.0;
       d = sin(d * scale + iTime * speed);
       d = abs(d);

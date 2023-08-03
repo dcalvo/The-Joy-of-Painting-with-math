@@ -13,9 +13,11 @@ vec3 palette( float t ) {
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
-    vec2 uv0 = uv;
+    vec2 uv0 = uv;  // save the original uv coordinates
 
-    float zoom = 1.5;
+    // how much to scale the uv coordinates
+    float zoom = 1.0;
+    // zoom = 1.5;
     
     vec3 finalColor = vec3(0.0);  // start with black
     
@@ -32,7 +34,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
       vec3 col = palette(length(uv0) + iTime * 0.5);
 
       // make and move some circles
-      float scale = 5.0;  // halved from the previous example
+      float scale = 10.0;  // halved from the previous example
       float speed = 1.0;
       d = sin(d * scale + iTime * speed);
       d = abs(d);

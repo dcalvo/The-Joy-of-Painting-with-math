@@ -6,9 +6,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 uv = fragCoord / iResolution.xy;
 
     // move the center of the world to the center of the screen
-    uv = uv - 0.5;
+    // uv = uv - 0.5;
     // stretch our coordinates back out from 0 to 1
-    uv = uv * 2.0;
+    // uv = uv * 2.0;
 
     // ...and correct for the aspect ratio
     // uv.x *= iResolution.x / iResolution.y;

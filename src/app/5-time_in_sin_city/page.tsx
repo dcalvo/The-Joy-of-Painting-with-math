@@ -7,19 +7,20 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 
     float d = length(uv);
 
-    // how much to scale the sin wave
+    // how much to scale the sin wave's frequency
     float scale = 10.0;
 
     // how fast to move the sin wave
     float speed = 0.0;
 
-    // make the sin wave move!
-    d = sin(d * scale + iTime * speed);
-    d = abs(d);
+    // make some waves!
+    // d = sin(d * scale + iTime * speed);  // iTime is basically a stopwatch
+    // d = abs(d);
 
-    // we have to scale the smoothstep range to match the range of our sin wave
-    d = smoothstep(0.0, 0.1 * scale, d);
+    // invert the color for a *neon aesthetic*
     // d = 0.16 / d;
+
+    // side note: why 0.16? why not 1.0? try both, then graph them on Desmos and look at the difference between [0, 1]
 
     fragColor = vec4(d, d, d, 1.0);
 

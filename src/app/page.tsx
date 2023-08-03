@@ -16,7 +16,7 @@ vec3 palette( float t ) {
  * Here's a list of things you can do:
  * - click on purple numbers to bring up a slider or color picker
  * - click, drag, and resize the preview in the lower right
- * - click and scroll in the font size box to change the font size
+ * - click and scroll/arrow keys in the font size box to change the font size
  * - ctrl + / to comment or uncomment a line
  * - refresh to reset the editor
  * Try it out! Click and change some numbers! (1.5 on line 27 is a favorite)
@@ -42,7 +42,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 }
   `
 
-  return <DemoPage title={"The Joy of Painting (with math)"} prevHref={null} nextHref={"1-let_there_be_dark"} shaderSource={shaderSource} />
+  return <DemoPage title={"The Joy of Painting (with math)"} prevHref={"9-exponentially_powerful"} nextHref={"1-let_there_be_dark"} shaderSource={shaderSource} />
 }
 
 export default Page

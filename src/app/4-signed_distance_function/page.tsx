@@ -14,12 +14,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     // set distance to be positive if it's inside the circle
     // d = abs(d);
 
-    // step says, "If it's less than x, make it 0. If it's greater than x, make it 1."
-    // d = step(0.1, d);
-
-    // smoothstep says almost the same thing, but it lets you choose an x and y to transition between
-    // d = smoothstep(0.1, 0.2, d);
-
     fragColor = vec4(d, d, d, 1.0);
 
 }

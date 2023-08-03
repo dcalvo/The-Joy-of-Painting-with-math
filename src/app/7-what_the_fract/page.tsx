@@ -15,11 +15,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
     vec2 uv0 = uv; // save the original uv coordinates
 
-    // how much to scale the uv coordinates
-    float zoom = 1.0;
-
     // repeat the pattern!
-    uv = fract(uv * zoom);
+    // uv = fract(uv);  // fract says "give me the decimal part of this number"
     // uv -= 0.5;
     // uv *= 2.0;
 
@@ -38,7 +35,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     col *= d;
 
     fragColor = vec4(col, 1.0);
-    // fragColor = vec4(uv, 0.0, 1.0);
+    // fragColor = vec4(uv, 0.0, 1.0);  // an alien sunset in the 4th dimension 🤯
 
 }
 `
