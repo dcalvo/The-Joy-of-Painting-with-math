@@ -37,7 +37,7 @@ function setMouse(mouse) {
   }
 }
 `
-
+// we need to monkey patch the render function to set the global uniforms in the style of shadertoy
 const monkeyPatchRender = `
 function render() {
   const isCanvasVisible = (canvas) => {
@@ -148,7 +148,7 @@ function GlslEditor({ defaultSource, fontSize = 14 }: GlslEditorProps) {
         for (const child of Array.from(editor.children)) editor.removeChild(child)
       }
     }
-  })
+  }, [])
 
   return <div id="glsl_editor" style={{ fontSize: `${fontSize}px` }} />
 }
