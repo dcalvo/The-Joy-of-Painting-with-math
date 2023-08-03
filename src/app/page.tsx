@@ -48,7 +48,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     <h2 className="text-center text-2xl font-bold text-white">
       The Joy of Painting (with math)
     </h2>
-    <a href="https://github.com/dcalvo/shadertoy-demo" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/dcalvo/The-Joy-of-Painting-with-math" target="_blank" rel="noopener noreferrer">
       <Image src={githubBadge} alt={"Github Repo"} className="ml-2 h-8 w-8" />
     </a>
   </DemoPage>
