@@ -17,7 +17,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     float d = length(uv);
 
     // pick a color
-    vec3 col = vec3(0.33, 0.66, 1.0);
+    vec3 col = vec3(1.0);
+    // col = vec3(0.33, 0.66, 1.0);
     // col = palette(d);
     // col = palette(d + iTime);
 

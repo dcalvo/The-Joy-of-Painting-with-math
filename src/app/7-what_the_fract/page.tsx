@@ -16,14 +16,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 uv0 = uv; // save the original uv coordinates
 
     // repeat the pattern!
-    // uv = fract(uv);  // fract says "give me the decimal part of this number"
+    // uv = fract(uv * 1.0);  // fract says "give me the decimal part of this number"
     // uv -= 0.5;
     // uv *= 2.0;
 
     float d = length(uv);
 
     vec3 col = palette(d + iTime);
-    // col = palette(length(uv0) + iTime);
+    // col = palette(length(uv0) + iTime * 0.5);
 
     float scale = 10.0;
     float speed = 1.0;

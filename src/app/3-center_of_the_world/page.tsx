@@ -10,12 +10,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     // stretch our coordinates back out from 0 to 1
     // uv = uv * 2.0;
 
-    // ...and correct for the aspect ratio
-    // uv.x *= iResolution.x / iResolution.y;
-
     fragColor = vec4(uv, 0.0, 1.0);
 
-    // let's make a circle
+    // let's make a circle using length()
+    // // uv.x *= iResolution.x / iResolution.y;  // ...and correct for the aspect ratio
     // float d = length(uv);
     // fragColor = vec4(d, d, d, 1.0);
 

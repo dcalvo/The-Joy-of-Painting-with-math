@@ -6,6 +6,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
 
     float d = length(uv);
+    d -= 0.5;
 
     // how much to scale the sin wave's frequency
     float scale = 10.0;
@@ -15,7 +16,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 
     // make some waves!
     // d = sin(d * scale + iTime * speed);  // iTime is basically a stopwatch
-    // d = abs(d);
+    
+    d = abs(d);
 
     // invert the color for a *neon aesthetic*
     // d = 0.16 / d;
